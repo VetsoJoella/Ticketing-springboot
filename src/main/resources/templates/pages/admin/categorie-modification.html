@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="fragments/_layout-admin">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title></title>
+</head>
+<body>
+  
+    <main id="main" class="main" layout:fragment="content">
+        <div class="pagetitle">
+            <h1>Vol</h1>
+            <nav>
+              <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="#">Accueil</a></li>
+                <li class="breadcrumb-item">Categorie Age</li>
+                <li class="breadcrumb-item active">Modification</li>
+              </ol>
+            </nav>
+          </div><!-- End Page Title -->
+        <section class="section" >
+            <div class="row">
+              <div class="col-lg-12">
+      
+                <div class="card">
+                  <div class="card-body">
+                    <h5 class="card-title">Modification Age</h5>
+      
+                    <!-- Horizontal Form -->
+                    <form method="post" action="/admin/categorie">
+                      <div class="row mb-3">
+                          <label for="inputEmail3" class="col-sm-2 col-form-label">Catégorie age</label>
+                          <div class="col-sm-10">
+                            <select class="form-select" id="inputText" name="categorie">
+                              <option th:each="categorie : ${categories}" th:value="${categorie.id}" th:text="${categorie.nom}"></option>
+                            </select>
+                          </div>
+                      </div>
+                      <div class="row mb-3">
+                          <label for="inputEmail3" class="col-sm-2 col-form-label">Age min</label>
+                          <div class="col-sm-10">
+                            <input type="number" class="form-control" name="ageMin" id="inputEmail3">
+                          </div>
+                      </div>
+                      <div class="row mb-3">
+                        <label for="inputEmail3" class="col-sm-2 col-form-label">Age max</label>
+                        <div class="col-sm-10">
+                          <input type="number" class="form-control" name="ageMax" id="inputEmail3">
+                        </div>
+                    </div>
+                      <div class="row mb-3">
+                        <label for="inputEmail3" class="col-sm-2 col-form-label">Promotion</label>
+                        <div class="col-sm-10">
+                          <input type="number" class="form-control" name="promotion" id="inputEmail3">
+                        </div>
+                    </div>
+                      <div class="text-center">
+                        <button type="submit" class="btn btn-primary">Modifier</button>
+                        <button type="reset" class="btn btn-secondary">Réinitialiser</button>
+                      </div>
+                    </form><!-- End Horizontal Form -->
+      
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="col-lg-12">
+                  <div class="card">
+                      <div class="card-body">
+                          <h5 class="card-title">Listes promotions par age</h5>
+
+                      <table class="table table-bordered mb-5 text-center">
+                          <thead>
+                          <tr>
+                              <th scope="col">#</th>
+                              <th scope="col">Categorie</th>
+                              <th scope="col">Intervalle age</th>
+                              <th scope="col">Promotion (%)</th>
+                          </tr>
+                          </thead>
+                          <tbody>
+                              <tr th:each="categorieAge : ${categorieAges}">
+                                  <td th:text="${categorieAge.id}"></td>
+                                  <td th:text="${categorieAge.categorie.nom}"></td>
+                                  <td th:text="| ${categorieAge.ageMin} ans - ${categorieAge.ageMax} ans|"></td>
+                                  <td th:text="${categorieAge.promotion}"></a></td>
+                              </tr>
+                          </tbody>
+                      </table>
+              
+                          <!-- Disabled and active states -->
+                          <nav aria-label="...">
+                              <ul class="pagination justify-content-center">
+                              <li class="page-item disabled">
+                                  <a class="page-link" href="#" tabindex="-1" aria-disabled="true">Previous</a>
+                              </li>
+                              <li class="page-item"><a class="page-link" href="#">1</a></li>
+                              <li class="page-item active" aria-current="page">
+                                  <a class="page-link" href="#">2</a>
+                              </li>
+                              <li class="page-item"><a class="page-link" href="#">3</a></li>
+                              <li class="page-item">
+                                  <a class="page-link" href="#">Next</a>
+                              </li>
+                              </ul>
+                          </nav><!-- End Disabled and active states -->
+              
+                      
+                      </div>
+                  </div>
+              </div>
+          </div>
+          </section>
+
+    </main>
+
+</body>
+</html>

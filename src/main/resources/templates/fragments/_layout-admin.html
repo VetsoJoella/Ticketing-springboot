@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+<head th:replace="~{fragments/template/header :: head}"></head>
+<body>
+
+  <div th:if="${message}">
+    <script th:inline="javascript">
+        // Afficher une alerte avec le message passé dans le modèle
+        alert([[${message}]]);
+    </script>
+</div>
+  <header th:replace="~{fragments/template/header :: header}"></header>
+  <aside th:replace="~{fragments/navbar/nav-admin :: navbar}" ></aside>
+
+  <!-- La partie centrale qui sera remplacée par le contenu spécifique -->
+  <main layout:fragment="content">
+      
+  </main>
+
+  <!-- Pied de page -->
+  <footer th:replace="~{fragments/template/footer :: footer}"></footer>
+  <div th:replace="~{fragments/template/footer :: lien}"></div>
+
+
+</body>
+</html>

@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="fragments/_layout-admin">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title></title>
+</head>
+<body>
+
+    <main id="main" class="main" layout:fragment="content">
+        <div class="pagetitle">
+            <h1>Vol</h1>
+            <nav>
+              <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="#">Accueil</a></li>
+                <li class="breadcrumb-item">Reservations</li>
+              </ol>
+            </nav>
+          </div><!-- End Page Title -->
+        <section class="section" >
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="card">
+                        <div class="card-body">
+                            <h5 class="card-title">Liste Vol</h5>
+
+                        <table class="table table-bordered mb-5 text-center">
+                            <thead>
+                            <tr>
+                                <th scope="col">#</th>
+                                <th scope="col">Passager</th>
+                                <th scope="col">Date reservation</th>
+                                <th scope="col"></th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                                <tr th:each="reservation : ${reservations}">
+                                    <td th:text="${reservation.id}">1</td>
+                                    <td th:text="${reservation.passager.nom}">Dupont</td>
+                                    <td th:text="${reservation.dateReservation}">01/01/2023</td>
+                                    <td><a th:href="@{/admin/reservation(id=${reservation.id})}">Annuler</a></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                
+                            <!-- Disabled and active states -->
+                            <nav aria-label="...">
+                                <ul class="pagination justify-content-center">
+                                <li class="page-item disabled">
+                                    <a class="page-link" href="#" tabindex="-1" aria-disabled="true">Previous</a>
+                                </li>
+                                <li class="page-item"><a class="page-link" href="#">1</a></li>
+                                <li class="page-item active" aria-current="page">
+                                    <a class="page-link" href="#">2</a>
+                                </li>
+                                <li class="page-item"><a class="page-link" href="#">3</a></li>
+                                <li class="page-item">
+                                    <a class="page-link" href="#">Next</a>
+                                </li>
+                                </ul>
+                            </nav><!-- End Disabled and active states -->
+                
+                        
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+        </section>
+
+    </main>
+
+</body>
+</html>

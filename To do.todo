@@ -1,0 +1,110 @@
+
+1- Modification des catégories d'ages :
+    
+    Affichage 
+        ✔ Formulaire de login @done (3/19/2025, 6:46:38 AM)
+            - input text + input password + bouton validation 
+
+        ✔ Formulaire de modif : @done (3/19/2025, 6:46:39 AM)
+            - select de catégorie + input number + bouton 
+
+    Métier 
+        ✔ Classe ConnectionException extends Exception @done (3/19/2025, 6:53:03 AM)
+            - args Utlisateur
+        ✔ Classe ValeurInvalideException extends Exception @done (3/19/2025, 6:53:04 AM)
+        ✔ Classe abstract Utilisateur @done (3/19/2025, 6:53:05 AM)
+            - args : id 
+            - abstract void se_connecter(Connection) throws ConnectionException 
+        ✔ Classe Admin extends Utilisateur @done (3/19/2025, 6:53:06 AM)
+            - args : login, mdp 
+            - void se_connecter(Connection) throws ConnectionException 
+        ✔ Classe Categorie : @done (3/19/2025, 7:21:13 AM)
+            - args : id, nom 
+            - Categorie[] getAll(Connection) throws Exception 
+            - Categorie getById(Connection, id) throws Exception 
+        ✔ Classe CategorieAge : @done (3/19/2025, 7:39:44 AM)
+            - args : id, Categorie, valeur 
+            - void setValeur(valeur) throws ValeurInvalideException 
+            - CategorieAge[] getAll(Connection) throws Exception 
+            - Categorie getById(Connection, id) throws Exception
+            - Categorie getByCategorie(Connection, Categorie) throws Exception
+            - void updateCategorie(Connection) throws Exception
+            - void insertHistorique(Connection) throws Exception 
+            - void update(Connection) throws Exception 
+    
+    Base 
+        ☐ Table Categorie : id, nom 
+        ☐ Table CategorieAge : id, idCategorie, valeur 
+        ☐ Vue v_Categorie_age : CategorieAge left join Categorie on idCategorie
+
+
+2- Annulation réservation vol : 
+    
+    Affichage 
+        ☐ Tableau des reservations : id, avion, ville départ, ville destination, date décollage, Lien annulation  
+    
+    Métier 
+        ☐ Clase AnnulationReservationException extends Exception 
+            - args : Reservation 
+
+        ☐ Classe Reservation 
+            - args: id, Passager
+            - Vol getVolAssocie(Connection) throws Exception
+            - void annulerReservation(Connection) throws ReservationException 
+            - Reservation[] getAll(Connection) throws Exception
+            - Reservation getById(Connection) throws Exception
+            
+        ☐ Classe AnnulationReservation : 
+            - args : Reservation, dateAnnulation 
+            - void confirmerAnnulation(Connection)
+            - void set(Connection) throws Exception
+
+        ☐ Classe Vol 
+            - args : dateDécollage, derniereAnnulation
+            - void annulerReservation() 
+
+    Base 
+        ☐ vue v_reservation_vol : reservation left join vol on idVol 
+3- BackOffice Spring Boot : 
+    - Page de Connection 
+        ✔ fomulaire de Connection @done (4/3/2025, 10:35:19 AM)
+        ✔ Fonction se connecter dans Admin @done (4/4/2025, 9:21:11 AM)
+        ✔ Redirection vers form @done (4/3/2025, 10:35:24 AM)
+        ✔ Redirection vers home apres validation Connection @done (4/4/2025, 9:21:14 AM)
+    - Page de mise à jour catégorie age + promotion reliée avec 
+        ✔ formulaire de Modification + tableau de Categorie + promotion actuelle @done (4/9/2025, 9:16:01 AM)
+        ✔ Classe Categorie : @done (4/9/2025, 9:15:54 AM)
+            - args : id, categorie 
+        ✔ Classe CategorieAge : @done (4/9/2025, 9:15:52 AM)
+            - args : ageMin, ageMax, id, Categorie, promotion 
+            - CategorieAge[] getAll(Connection) throws Exception 
+            - void update(Connection) 
+            - setAgeMin(String); setAgeMax(String) throws ValeurInvalideException
+            - setAgeMin(int); setAgeMax(int) throws ValeurInvalideException
+
+        ✔ url de Redirection vers la form @done (4/9/2025, 10:02:30 AM)
+        ✔ url de reception des données mAJ @done (4/9/2025, 10:02:31 AM)
+    - Annulation de reservation 
+        ✔ tableau des reservations : Passager, datereservation @done (4/4/2025, 9:21:37 AM)
+        ✔ Fonction de get des listes des reservations @done (4/9/2025, 4:34:39 PM)
+        ✔ Classe ReservationException extends Exception: @done (4/9/2025, 4:42:46 PM)
+            - args : Object
+        ✔ Classe HoraireVol : @done (4/9/2025, 5:08:13 PM)
+            - args : derniereAnnulation, derniereReservation 
+        ✔ Classe AnnulationReservation : @done (4/9/2025, 5:08:12 PM)
+            - args : dateAnnulation, Reservation 
+            - HoraireVol getDateDerniereAnnulation(Connection) throws Exception 
+            - setDateAnnulation() throws ReservationException 
+            - void confirmer(Connection)
+            - void insertHistoriqueAnnulation(Connection) throws Exception 
+
+        ✔ Reservation @done (4/9/2025, 5:08:17 PM)
+            - void deleteFille(Connection) throws Exception 
+            - public void delete(Connection) throws Exception 
+        ☐ Fonction de suppression de réservation 
+        ☐ Url de Redirection vers la page de liste 
+        ☐ Url de Redirection de la requete de suppression
+
+4- FrontOffice Spring Boot : 
+    ☐ Insertion reservation 
+    ☐ Annulation reservation

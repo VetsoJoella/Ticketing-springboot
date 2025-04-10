@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+<head th:replace="~{fragments/template/header :: head}"></head>
+<body>
+
+  <!-- Affichage des messages d'alerte -->
+  <div th:if="${message}">
+    <script th:inline="javascript">
+        alert([[${message}]]);
+    </script>
+  </div>
+
+  <!-- Contenu central qui sera remplacé -->
+  <main layout:fragment="content">
+      <!-- Le contenu des pages enfants viendra ici -->
+  </main>
+
+  <!-- Pied de page -->
+  <footer th:replace="~{fragments/template/footer :: footer}"></footer>
+  <div th:replace="~{fragments/template/footer :: lien}"></div>
+
+</body>
+</html>

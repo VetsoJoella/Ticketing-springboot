@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Erreur</title>
+    <style>
+        body { font-family: Arial, sans-serif; text-align: center; padding: 50px; }
+        h1 { color: red; }
+        .container { max-width: 600px; margin: auto; padding: 20px; border: 1px solid #ccc; border-radius: 10px; box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.1); }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Oups ! Une erreur s'est produite</h1>
+        <p>Nous sommes désolés, mais une erreur est survenue.</p>
+        <p><strong>Code d'erreur :</strong> <span th:text="${status}"></span></p>
+        <p><strong>Message :</strong> <span th:text="${error}"></span></p>
+        <a href="/">Retour à l'accueil</a>
+    </div>
+</body>
+</html>
