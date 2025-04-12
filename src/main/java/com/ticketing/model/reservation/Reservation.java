@@ -50,6 +50,28 @@ public class Reservation {
 
     }
 
+    public static Reservation[] getByPassager(Connection connexion, Passager passager) throws Exception {
+        
+        List<Reservation> listes = new ArrayList<>() ;
+        String requete = "SELECT * from reservation WHERE id not in (SELECT idReservation from historiqueannulation) and idPassager = ?" ; 
+        System.out.println("Id passager est "+passager.getId());
+        try (PreparedStatement declaration = connexion.prepareStatement(requete)) {    
+            declaration.setString(1, passager.getId());
+            ResultSet resultat = declaration.executeQuery();
+            Reservation reservation = null ; 
+
+            while(resultat.next()) {
+               reservation = new Reservation(
+                resultat.getString("id"),
+                new Passager(resultat.getString("idPassager")),
+                resultat.getTimestamp("datereservation")
+               ) ;
+               listes.add(reservation) ;
+            }
+        }
+        return listes.toArray(new Reservation[0]) ;
+    }
+
     public void deleteFille(Connection connection)throws Exception{
         
         String requete = "DELETE FROM reservationFille where idReservation = ? " ;

@@ -33,9 +33,9 @@
             - void update(Connection) throws Exception 
     
     Base 
-        ☐ Table Categorie : id, nom 
-        ☐ Table CategorieAge : id, idCategorie, valeur 
-        ☐ Vue v_Categorie_age : CategorieAge left join Categorie on idCategorie
+        ✔ Table Categorie : id, nom @done (4/11/2025, 9:53:22 AM)
+        ✔ Table CategorieAge : id, idCategorie, valeur @done (4/11/2025, 9:53:23 AM)
+        ✔ Vue v_Categorie_age : CategorieAge left join Categorie on idCategorie @done (4/11/2025, 9:53:23 AM)
 
 
 2- Annulation réservation vol : 
@@ -44,27 +44,27 @@
         ☐ Tableau des reservations : id, avion, ville départ, ville destination, date décollage, Lien annulation  
     
     Métier 
-        ☐ Clase AnnulationReservationException extends Exception 
+        ✔ Clase AnnulationReservationException extends Exception @done (4/11/2025, 9:53:49 AM)
             - args : Reservation 
 
-        ☐ Classe Reservation 
+        ✔ Classe Reservation @done (4/11/2025, 9:53:53 AM)
             - args: id, Passager
             - Vol getVolAssocie(Connection) throws Exception
             - void annulerReservation(Connection) throws ReservationException 
             - Reservation[] getAll(Connection) throws Exception
             - Reservation getById(Connection) throws Exception
             
-        ☐ Classe AnnulationReservation : 
+        ✔ Classe AnnulationReservation : @done (4/11/2025, 9:53:56 AM)
             - args : Reservation, dateAnnulation 
             - void confirmerAnnulation(Connection)
             - void set(Connection) throws Exception
 
-        ☐ Classe Vol 
+        ✔ Classe Vol @done (4/11/2025, 9:53:57 AM)
             - args : dateDécollage, derniereAnnulation
             - void annulerReservation() 
 
     Base 
-        ☐ vue v_reservation_vol : reservation left join vol on idVol 
+        ✔ vue v_reservation_vol : reservation left join vol on idVol @done (4/11/2025, 9:54:01 AM)
 3- BackOffice Spring Boot : 
     - Page de Connection 
         ✔ fomulaire de Connection @done (4/3/2025, 10:35:19 AM)
@@ -101,10 +101,38 @@
         ✔ Reservation @done (4/9/2025, 5:08:17 PM)
             - void deleteFille(Connection) throws Exception 
             - public void delete(Connection) throws Exception 
-        ☐ Fonction de suppression de réservation 
-        ☐ Url de Redirection vers la page de liste 
-        ☐ Url de Redirection de la requete de suppression
+        ✔ Fonction de suppression de réservation @done (4/11/2025, 9:54:08 AM)
+        ✔ Url de Redirection vers la page de liste @done (4/11/2025, 9:54:09 AM)
+        ✔ Url de Redirection de la requete de suppression @done (4/11/2025, 9:54:10 AM)
 
 4- FrontOffice Spring Boot : 
+    - Page de connection : 
+        ✔ Page html : @done (4/11/2025, 10:28:49 AM)
+            - formulaire avec input text + name + bouton
+            - action /client/login
+            - method : post 
+        ✔ Méthode redirection login : @done (4/11/2025, 11:02:40 AM)
+            - getMapping 
+            - Redirection vers client/login.html
+        
+        ✔ Méthode listeReservation : @done (4/11/2025, 11:02:43 AM)
+            -méthode getMapping
+            - return vers page reservations.html 
+
+        ✔ Méthode login : @done (4/11/2025, 11:02:44 AM)
+            - postmapping 
+            - appel de se_connecter dans passager 
+            - redirection vers listeReservation
+
+    - Page de reservations : 
+        ✔ Front : @done (4/11/2025, 11:02:48 AM)
+            - tableau : id, date reservation, vol, départ-> destination, annuler 
+        ✔ Métier : @done (4/11/2025, 11:02:49 AM)
+            - Classe Reservation : 
+                . Reservation[] getByPassager(Connection, Passager) throws Exception
+    - Page déconnection : 
+        ✔ Métier: @done (4/11/2025, 11:02:50 AM)
+            - redirection vers client/login
+
     ☐ Insertion reservation 
     ☐ Annulation reservation
