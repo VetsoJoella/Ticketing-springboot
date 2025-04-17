@@ -31,6 +31,7 @@
                                 <th scope="col">Passager</th>
                                 <th scope="col">Date reservation</th>
                                 <th scope="col"></th>
+                                <th scope="col"></th>
                             </tr>
                             </thead>
                             <tbody>
@@ -38,7 +39,9 @@
                                     <td th:text="${reservation.id}">1</td>
                                     <td th:text="${reservation.passager.nom}">Dupont</td>
                                     <td th:text="${reservation.dateReservation}">01/01/2023</td>
-                                    <td><a th:href="@{/admin/reservation(id=${reservation.id})}">Annuler</a></td>
+                                    <td><a th:href="@{/admin/reservation(id=${reservation.id})}"><i class="trash-fill"></i></a></td>
+                                    <td><a th:href="@{/reservation/import(id=${reservation.id})}"><i class="
+                                        ri-arrow-down-circle-line"></i></a></td>
                                 </tr>
                             </tbody>
                         </table>

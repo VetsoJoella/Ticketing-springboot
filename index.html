@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ticket de Réservation</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background-color: white;
+            color: black;
+            max-width: 600px;
+            margin: 0 auto;
+            border: 1px solid #ddd;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        }
+        
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 2px solid black;
+            padding-bottom: 10px;
+            margin-bottom: 20px;
+        }
+        
+        .agency-name {
+            font-size: 24px;
+            font-weight: bold;
+        }
+        
+        .barcode {
+            font-family: 'Libre Barcode 128', cursive;
+            font-size: 36px;
+            transform: rotate(90deg);
+            margin-right: -20px;
+        }
+        
+        .flight-info, .passenger-info {
+            margin-bottom: 20px;
+        }
+        
+        .info-section {
+            margin-bottom: 15px;
+        }
+        
+        .info-title {
+            font-weight: bold;
+            text-transform: uppercase;
+            font-size: 14px;
+            margin-bottom: 5px;
+        }
+        
+        .info-content {
+            display: flex;
+            justify-content: space-between;
+        }
+        
+        .info-item {
+            flex: 1;
+        }
+        
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+        
+        th, td {
+            border: 1px solid black;
+            padding: 8px;
+            text-align: left;
+        }
+        
+        th {
+            background-color: #f2f2f2;
+            text-transform: uppercase;
+            font-size: 12px;
+        }
+        
+        .footer {
+            margin-top: 20px;
+            text-align: center;
+            font-size: 10px;
+            border-top: 1px dashed black;
+            padding-top: 10px;
+        }
+        
+        .barcode-bottom {
+            font-family: 'Libre Barcode 128', cursive;
+            font-size: 48px;
+            text-align: center;
+            margin-top: 20px;
+            letter-spacing: 2px;
+        }
+    </style>
+    <link href="https://fonts.googleapis.com/css2?family=Libre+Barcode+128&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="header">
+        <div class="agency-name">VOYAGES ÉTOILE</div>
+        <div class="barcode">1234567890</div>
+    </div>
+    
+    <div class="flight-info">
+        <div class="info-section">
+            <div class="info-title">Détails du vol</div>
+            <div class="info-content">
+                <div class="info-item">
+                    <div><strong>Date:</strong> 15 Nov 2023</div>
+                    <div><strong>Heure:</strong> 14:30</div>
+                </div>
+                <div class="info-item">
+                    <div><strong>Départ:</strong> Paris (CDG)</div>
+                    <div><strong>Arrivée:</strong> New York (JFK)</div>
+                </div>
+                <div class="info-item">
+                    <div><strong>Vol:</strong> AF 345</div>
+                    <div><strong>Avion:</strong> Airbus A380</div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <div class="passenger-info">
+        <div class="info-section">
+            <div class="info-title">Détails du passager</div>
+            <div class="info-content">
+                <div class="info-item">
+                    <div><strong>Nom:</strong> DUPONT</div>
+                    <div><strong>Prénom:</strong> Jean</div>
+                </div>
+                <div class="info-item">
+                    <div><strong>Réservation ID:</strong> RES789456</div>
+                    <div><strong>Date réservation:</strong> 10 Oct 2023</div>
+                </div>
+                <div class="info-item">
+                    <div><strong>Nombre de places:</strong> 2</div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <table>
+        <thead>
+            <tr>
+                <th>ID Billet</th>
+                <th>Catégorie</th>
+                <th>Classe</th>
+                <th>Prix</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>B7894561</td>
+                <td>Adulte</td>
+                <td>Business</td>
+                <td>€1200</td>
+            </tr>
+            <tr>
+                <td>B7894562</td>
+                <td>Enfant</td>
+                <td>Business</td>
+                <td>€900</td>
+            </tr>
+        </tbody>
+    </table>
+    
+    <div class="barcode-bottom">RES789456DUPONTJ</div>
+    
+    <div class="footer">
+        Merci d'avoir choisi VOYAGES ÉTOILE | Boarding pass required at gate | www.voyages-etoile.com
+    </div>
+</body>
+</html>

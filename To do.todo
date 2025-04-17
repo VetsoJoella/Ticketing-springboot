@@ -134,5 +134,63 @@
         ✔ Métier: @done (4/11/2025, 11:02:50 AM)
             - redirection vers client/login
 
-    ☐ Insertion reservation 
-    ☐ Annulation reservation
+    ✔ Annulation reservation @done (4/14/2025, 9:09:43 AM)
+
+
+5- Export de données : 
+
+    Coté framework maison : 
+        
+        Métier : 
+            ✔ Classe Reservation : @done (4/14/2025, 9:57:00 AM)
+                - Méthode getReservationById(Connection, id) throws Exception 
+            ✔ Classe ReservationDTO : @done (4/14/2025, 9:55:31 AM)
+                - args : id, passager, datereservation, image, ReservationFilleDTO[] 
+                - ReservationDTO(Reservation)
+            ✔ Classe ReservationFilleDTO : @done (4/14/2025, 9:51:55 AM)
+                - args :  id, promotion, prix, categorie, classe 
+                - ReservationFilleDTO(ReservationFille)  
+        Intégration : 
+            ✔ Classe ReservationAPI : @done (4/15/2025, 4:50:34 PM)
+                - args : datasource autowired
+                - restController
+                - Méthode getReservationById(Id) 
+
+
+    Coté Spring boot : (coté admin)
+
+        Affichage : 
+            ✔ Liste réservation : @done (4/15/2025, 4:50:37 PM)
+                - ajout de icon : export dedans 
+                
+        Intégration : 
+            ✔ Classe ReservationDTO : @done (4/15/2025, 4:53:29 PM)
+                - args : id, passager, datereservation, image, ReservationFilleDTO[] 
+                - ReservationDTO()
+            ✔ Classe ReservationFilleDTO : @done (4/15/2025, 4:53:33 PM)
+                - args :  id, promotion, prix, categorie, classe 
+                - ReservationFilleDTO() 
+            ☐ Classe ReservationController : 
+                - @Controller 
+                - expotPDF() 
+
+            ☐ Class PDFManager 
+
+☐ Création de gestionnaire de pdf + structure de pdf 
+☐ Ajout d'action de téléchargement
+
+
+Classe 1 : 
+    Byte[]
+    Object 
+    extension
+    fileName, 
+    header
+    separator, 
+    content-type
+
+    => appel de export csv via lib 
+
+
+Service dev :
+    export(instance, data, name) 

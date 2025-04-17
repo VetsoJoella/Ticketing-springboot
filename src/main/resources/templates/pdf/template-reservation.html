@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"/>
+    <title>Billet d'Avion - Ticketing Place</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            color: #333;
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 0;
+            background-color: #f5f9fc;
+        }
+        .ticket-container {
+            border: 2px solid #2c3e50;
+            border-radius: 8px;
+            overflow: hidden;
+            margin: 20px 0;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+        .ticket-header {
+            background-color: #2c3e50;
+            color: white;
+            padding: 15px;
+            text-align: center;
+        }
+        .ticket-header h1 {
+            margin: 0;
+            font-size: 24px;
+        }
+        .ticket-airline {
+            background-color: #3498db;
+            color: white;
+            padding: 10px 15px;
+            font-weight: bold;
+        }
+        .ticket-body {
+            padding: 20px;
+            background-color: white;
+        }
+        .flight-info {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 20px;
+            border-bottom: 1px dashed #ddd;
+            padding-bottom: 15px;
+        }
+        .flight-details {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 15px;
+        }
+        .detail-column {
+            flex: 1;
+        }
+        .detail-label {
+            font-size: 12px;
+            color: #7f8c8d;
+            margin-bottom: 5px;
+        }
+        .detail-value {
+            font-weight: bold;
+            font-size: 16px;
+        }
+        .passenger-info {
+            background-color: #f9f9f9;
+            padding: 15px;
+            border-radius: 5px;
+            margin-bottom: 20px;
+        }
+        .barcode {
+            text-align: center;
+            margin-top: 20px;
+            padding-top: 10px;
+            border-top: 1px dashed #ddd;
+        }
+        .ticket-footer {
+            background-color: #ecf0f1;
+            padding: 10px 15px;
+            font-size: 12px;
+            text-align: center;
+        }
+        .status {
+            display: inline-block;
+            padding: 3px 8px;
+            background-color: #27ae60;
+            color: white;
+            border-radius: 4px;
+            font-size: 12px;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <div class="ticket-container">
+        <!-- En-tête du billet -->
+        <div class="ticket-header">
+            <h1>Ticketing Place</h1>
+            <div>Billet d'Avion</div>
+        </div>
+        
+        <div class="ticket-airline">
+            VOL DOMESTIQUE - ÉCONOMIQUE
+        </div>
+        
+        <div class="ticket-body">
+            <!-- Informations de vol -->
+            <div class="flight-info">
+                <div>
+                    <div class="detail-label">N° DE RÉSERVATION</div>
+                    <div class="detail-value" th:text="${reservation.id}">RVT00028</div>
+                </div>
+                <div>
+                    <div class="detail-label">STATUT</div>
+                    <div class="status">CONFIRMÉ</div>
+                </div>
+            </div>
+            
+            <!-- Détails du vol -->
+            <div class="flight-details">
+                <div class="detail-column">
+                    <div class="detail-label">DATE</div>
+                    <div class="detail-value" th:text="${#dates.format(reservation.dateReservation, 'dd/MM/yyyy')}">12/04/2025</div>
+                </div>
+                <div class="detail-column">
+                    <div class="detail-label">HEURE</div>
+                    <div class="detail-value" th:text="${#dates.format(reservation.dateReservation, 'HH:mm')}">21:09</div>
+                </div>
+            </div>
+            
+            <!-- Informations passager -->
+            <div class="passenger-info">
+                <div class="detail-label">PASSAGER</div>
+                <div class="detail-value" th:text="${reservation.passager}">Nom du Passager</div>
+                
+                <div th:if="${reservation.image}" style="margin-top: 10px;">
+                    <div class="detail-label">PIÈCE D'IDENTITÉ</div>
+                    <div class="detail-value" th:text="${'DOCUMENT: ' + reservation.image}">passport.png</div>
+                </div>
+            </div>
+            
+            <!-- Détails des billets -->
+            <div th:each="ticket : ${reservation.reservationFillesDTO}">
+                <div class="flight-details">
+                    <div class="detail-column">
+                        <div class="detail-label">RÉFÉRENCE</div>
+                        <div class="detail-value" th:text="${ticket.id}">DTL_BLT00169</div>
+                    </div>
+                    <div class="detail-column">
+                        <div class="detail-label">CATÉGORIE</div>
+                        <div class="detail-value" th:text="${ticket.categorie}">Adulte</div>
+                    </div>
+                    <div class="detail-column">
+                        <div class="detail-label">PRIX</div>
+                        <div class="detail-value" th:text="${#numbers.formatDecimal(ticket.prix, 0, 2)} + ' Ar'">0 Ar</div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Code-barres (simulé) -->
+            <div class="barcode">
+                <div style="font-family: 'Libre Barcode 128', cursive; font-size: 40px; letter-spacing: 3px;">
+                    <span th:text="${reservation.id.replace('-','')}">RVT00028</span>
+                </div>
+                <div style="margin-top: 5px; font-size: 10px;">SCANNEZ CE CODE À L'EMBARQUEMENT</div>
+            </div>
+        </div>
+        
+        <div class="ticket-footer">
+            <div>Merci de voyager avec Ticketing Place</div>
+            <div>contact@ticketingplace.com | +33 1 23 45 67 89</div>
+        </div>
+    </div>
+</body>
+</html>
