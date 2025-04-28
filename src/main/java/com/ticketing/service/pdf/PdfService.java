@@ -1,14 +1,19 @@
 package com.ticketing.service.pdf;
 
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.core.io.ClassPathResource;
 import org.springframework.stereotype.Service;
+import org.springframework.util.StreamUtils;
 import org.thymeleaf.TemplateEngine;
 import org.thymeleaf.context.Context;
 import org.xhtmlrenderer.pdf.ITextRenderer;
-
+import org.xhtmlrenderer.pdf.ITextUserAgent;
+import org.springframework.core.io.Resource; // Correct pour Spring
 import com.ticketing.model.reservation.ReservationDTO;
 
 import java.io.ByteArrayOutputStream;
+import java.io.IOException;
+import java.nio.charset.StandardCharsets;
 import java.time.LocalDate;
 import java.util.Date;
 import java.util.Map;
@@ -25,11 +30,18 @@ public class PdfService {
     }
 
     
-    public byte[] generateReservationPdf(ReservationDTO response) {
+    public byte[] generateReservationPdf(ReservationDTO response) throws Exception{
 
         Context context = new Context();
         context.setVariable("reservation", response);
         context.setVariable("imageBaseUrl", webServiceImg);
+
+        // context.setVariable("css1", loadCss("css/pdf/reservation-pdf.css"));
+        // context.setVariable("css2", loadCss("css/css2.css"));
+        // ClassPathResource cssResource = new ClassPathResource("static/css/pdf/reservation-pdf.css");
+        // String css = new String(cssResource.getInputStream().readAllBytes());
+        // context.setVariable("pdfStyles", css);
+
         String html = templateEngine.process("pdf/template-reservation.html", context);
         
         try (ByteArrayOutputStream outputStream = new ByteArrayOutputStream()) {
@@ -37,6 +49,7 @@ public class PdfService {
             renderer.setDocumentFromString(html);
             renderer.layout();
             renderer.createPDF(outputStream);
+            
             return outputStream.toByteArray();
         } catch (Exception e) {
             throw new RuntimeException("Erreur lors de la génération du PDF", e);
@@ -69,6 +82,15 @@ public class PdfService {
             return outputStream.toByteArray();
         } catch (Exception e) {
             throw new RuntimeException("Erreur lors de la génération du PDF", e);
+        }
+    }
+
+    private String loadCss(String path) {
+        try {
+            Resource resource = new ClassPathResource("static/" + path);
+            return StreamUtils.copyToString(resource.getInputStream(), StandardCharsets.UTF_8);
+        } catch (IOException e) {
+            return ""; // Retourne une chaîne vide si le CSS est manquant
         }
     }
 }

@@ -62,4 +62,8 @@ public class ReservationDTO {
     public void setReservationFillesDTO(ReservationFilleDTO[] reservationFillesDTO) {
         this.reservationFillesDTO = reservationFillesDTO;
     }
+
+    public int getNbBillet() {
+        return getReservationFillesDTO().length;
+    }
 }
